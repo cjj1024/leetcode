@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class Solution {
     public static void main(String[] args) {
-        int[] nums = {1,2,1,3,2,5};
+        int[] nums = {1, 2, 1, 3, 2, 5};
         int[] rets = singleNumber(nums);
         for (int ret : rets) {
             System.out.println(ret);
@@ -30,6 +30,7 @@ public class Solution {
 
         return new int[]{x, x ^ bitMask};
     }
+}
 
 //    public static int[] singleNumber(int[] nums) {
 //        Set<Integer> set = new HashSet<>();
@@ -49,4 +50,4 @@ public class Solution {
 //
 //        return ret;
 //    }
-}
+//}
