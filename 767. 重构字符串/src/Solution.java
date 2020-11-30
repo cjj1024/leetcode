@@ -9,8 +9,8 @@ import java.util.PriorityQueue;
  */
 public class Solution {
     public static void main(String[] args) {
-//        System.out.println(reorganizeString("aab"));
-//        System.out.println(reorganizeString("bfrbs"));
+        System.out.println(reorganizeString("aab"));
+        System.out.println(reorganizeString("bfrbs"));
         System.out.println(reorganizeString("ogccckcwmbmxtsbmozli"));
     }
     public static String reorganizeString(String S) {
