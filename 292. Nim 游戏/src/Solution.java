@@ -8,17 +8,6 @@ public class Solution {
     }
 
     public static boolean canWinNim(int n) {
-        if (n < 0) {
-            return false;
-        }
-        else if (n <= 3) {
-            return true;
-        } else {
-            boolean ret = false;
-            for (int i = 2; i < 6; i++) {
-                ret = ret | canWinNim(n - i);
-            }
-            return ret;
-        }
+        return (n % 4 != 0);
     }
 }
