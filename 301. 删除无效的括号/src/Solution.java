@@ -7,5 +7,7 @@ import java.util.*;
  * @create 2020/12/7-15:02
  */
 public class Solution {
+    public static void main(String[] args) {
 
+    }
 }
