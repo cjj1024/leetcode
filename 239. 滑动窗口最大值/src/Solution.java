@@ -15,38 +15,90 @@ public class Solution {
             System.out.println(i);
         }
     }
-
     public static int[] maxSlidingWindow(int[] nums, int k) {
         if (nums.length <= k) {
             return new int[]{Arrays.stream(nums).max().getAsInt()};
         }
-        if (k == 1) {
-            return nums;
-        }
 
-        Deque<Integer> deque = new ArrayDeque<>();
+        PriorityQueue<Integer> queue = new PriorityQueue<>(((o1, o2) -> nums[o2] - nums[o1]));
         for (int i = 0; i < k; i++) {
-            while (!deque.isEmpty() && nums[i] > nums[deque.getLast()]) {
-                deque.removeLast();
-            }
-            deque.addLast(i);
+            queue.offer(i);
         }
 
-        int[] ret = new int[nums.length - k + 1];
-        ret[0] = nums[deque.getFirst()];
+        int[] maxNum = new int[nums.length - k + 1];
+        int j = 0;
+        maxNum[j++] = nums[queue.peek()];
         for (int i = k; i < nums.length; i++) {
-            if (deque.getFirst() == i - k) {
-                deque.removeFirst();
+            queue.offer(i);
+            while (!queue.isEmpty() && queue.peek() <= i - k) {
+                queue.poll();
             }
-            while (!deque.isEmpty() && nums[i] > nums[deque.getLast()]) {
-                deque.removeLast();
-            }
-            deque.addLast(i);
-            ret[i - k + 1] = nums[deque.getFirst()];
+            maxNum[j++] = nums[queue.peek()];
         }
 
-        return ret;
+        return maxNum;
     }
+
+//    public static int[] maxSlidingWindow(int[] nums, int k) {
+//        if (nums.length <= k) {
+//            return new int[]{Arrays.stream(nums).max().getAsInt()};
+//        }
+//
+//        int[] maxNum = new int[nums.length - k + 1];
+//        int[] helper = new int[k];
+//        Arrays.fill(helper, Integer.MIN_VALUE);
+//        for (int i = 0; i < k; i++) {
+//            for (int j = 0; j <= i; j++) {
+//                helper[j] = Math.max(helper[j], nums[i]);
+//            }
+//        }
+//        int i = 0;
+//        int index = 0;
+//        for (int j = k; j < nums.length; j++) {
+//            maxNum[i++] = helper[index];
+//            helper[index] = Integer.MIN_VALUE;
+//            index++;
+//            index = index % k;
+//            for (int m = 0; m < k; m++) {
+//                helper[m] = Math.max(helper[m], nums[j]);
+//            }
+//        }
+//        maxNum[i++] = helper[index];
+//
+//        return maxNum;
+//    }
+
+//    public static int[] maxSlidingWindow(int[] nums, int k) {
+//        if (nums.length <= k) {
+//            return new int[]{Arrays.stream(nums).max().getAsInt()};
+//        }
+//        if (k == 1) {
+//            return nums;
+//        }
+//
+//        Deque<Integer> deque = new ArrayDeque<>();
+//        for (int i = 0; i < k; i++) {
+//            while (!deque.isEmpty() && nums[i] > nums[deque.getLast()]) {
+//                deque.removeLast();
+//            }
+//            deque.addLast(i);
+//        }
+//
+//        int[] ret = new int[nums.length - k + 1];
+//        ret[0] = nums[deque.getFirst()];
+//        for (int i = k; i < nums.length; i++) {
+//            if (deque.getFirst() == i - k) {
+//                deque.removeFirst();
+//            }
+//            while (!deque.isEmpty() && nums[i] > nums[deque.getLast()]) {
+//                deque.removeLast();
+//            }
+//            deque.addLast(i);
+//            ret[i - k + 1] = nums[deque.getFirst()];
+//        }
+//
+//        return ret;
+//    }
 }
 
 
