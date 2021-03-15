@@ -13,8 +13,55 @@ public class Solution {
                 {5, 6, 7, 8},
                 {9, 10, 11, 12}
         };
-        List<Integer> list = spiralOrder(matrix);
+//        int[][] matrix = {
+//                {1, 2, 3},
+//                {4, 5, 6},
+//                {7, 8, 9}
+//        };
+        List<Integer> list = spiralOrder2(matrix);
         list.forEach(System.out::println);
+    }
+
+    public static List<Integer> spiralOrder2(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int t = 0;
+        List<Integer> nums = new ArrayList<>();
+        for (int k = 0; k < m * n; ) {
+            int i = t;
+            int j = t;
+            if (n % 2 == 1 && j == n / 2) {
+                for (; i < m - t; i++) {
+                    nums.add(matrix[i][j]);
+                }
+                break;
+            }
+            if (m % 2 == 1 && i == m / 2) {
+                for (; j < n - t; j++) {
+                    nums.add(matrix[i][j]);
+                }
+                break;
+            }
+            for (; j < n - t - 1; j++) {
+                nums.add(matrix[i][j]);
+                k++;
+            }
+            for (; i < m - t - 1; i++) {
+                nums.add(matrix[i][j]);
+                k++;
+            }
+            for (; j > t; j--) {
+                nums.add(matrix[i][j]);
+                k++;
+            }
+            for (; i > t; i--) {
+                nums.add(matrix[i][j]);
+                k++;
+            }
+            t++;
+        }
+
+        return nums;
     }
 
     public static List<Integer> spiralOrder(int[][] matrix) {
