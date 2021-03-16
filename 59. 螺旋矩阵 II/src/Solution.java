@@ -4,7 +4,7 @@
  */
 public class Solution {
     public static void main(String[] args) {
-        int[][] matrix = generateMatrix(4);
+        int[][] matrix = generateMatrix2(4);
         for (int[] row : matrix) {
             for (int x : row) {
                 System.out.print(x);
@@ -12,6 +12,36 @@ public class Solution {
             }
             System.out.println();
         }
+    }
+
+    public static int[][] generateMatrix2(int n) {
+        int[][] matrix = new int[n][n];
+        int i = 0;
+        int j = 0;
+        int t = 0;
+        int k = 1;
+        while (k <= n * n) {
+            if (n % 2 == 1 && t == n / 2) {
+                matrix[t][t] = k++;
+                break;
+            }
+            i = t;
+            for (j = t; j < n - t - 1; j++) {
+                matrix[i][j] = k++;
+            }
+            for (i = t; i < n - t - 1; i++) {
+                matrix[i][j] = k++;
+            }
+            for (j = n - t - 1; j > t; j--) {
+                matrix[i][j] = k++;
+            }
+            for (i = n - t - 1; i > t; i--) {
+                matrix[i][j] = k++;
+            }
+            t++;
+        }
+
+        return matrix;
     }
 
     public static int[][] generateMatrix(int n) {
