@@ -12,10 +12,36 @@ public class Solution {
             node = node.next;
         }
 
-        ListNode list = reverseBetween(dummy.next, 1, 5);
+        ListNode list = reverseBetween2(dummy.next, 1, 5);
         for (; list != null; list = list.next) {
             System.out.println(list.val);
         }
+    }
+
+    public static ListNode reverseBetween2(ListNode head, int left, int right) {
+        if (head == null) {
+            return head;
+        }
+
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode tail = dummy;
+        for (int i = 1; i < left; i++) {
+            tail = tail.next;
+        }
+        ListNode node = tail.next;
+        ListNode next = tail.next;
+        ListNode tmp = node;
+        while (left <= right) {
+            node = next;
+            next = next.next;
+            node.next = tail.next;
+            tail.next = node;
+            left++;
+        }
+        tmp.next = next;
+
+        return dummy.next;
     }
 
     public static ListNode reverseBetween(ListNode head, int m, int n) {
