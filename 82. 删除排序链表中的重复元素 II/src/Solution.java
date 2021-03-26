@@ -1,5 +1,8 @@
 import com.sun.org.apache.xalan.internal.lib.NodeInfo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author cuijunjie
  * @create 2020--17-9:48
@@ -22,29 +25,53 @@ public class Solution {
     }
 
     public static ListNode deleteDuplicates(ListNode head) {
-        if (head == null || head.next == null) {
+        if (head == null) {
             return head;
         }
-
-        ListNode dummy = new ListNode(-1);
+        ListNode dummy = new ListNode();
         dummy.next = head;
-        ListNode pre = dummy;
-        while (head != null && head.next != null) {
-            if (pre.next.val != head.next.val) {
-                pre = pre.next;
-                head = head.next;
-            }
-            else {
-                while (head.next != null && pre.next.val == head.next.val) {
-                    head = head.next;
-                }
-                pre.next = head.next;
+        Map<Integer, Integer> map = new HashMap<>();
+        while (head != null) {
+            map.put(head.val, map.getOrDefault(head.val, 0) + 1);
+            head = head.next;
+        }
+
+        head = dummy;
+        while (head.next != null) {
+            if (map.get(head.next.val) != 1) {
+                head.next = head.next.next;
+            } else {
                 head = head.next;
             }
         }
 
         return dummy.next;
     }
+
+//    public static ListNode deleteDuplicates(ListNode head) {
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//
+//        ListNode dummy = new ListNode(-1);
+//        dummy.next = head;
+//        ListNode pre = dummy;
+//        while (head != null && head.next != null) {
+//            if (pre.next.val != head.next.val) {
+//                pre = pre.next;
+//                head = head.next;
+//            }
+//            else {
+//                while (head.next != null && pre.next.val == head.next.val) {
+//                    head = head.next;
+//                }
+//                pre.next = head.next;
+//                head = head.next;
+//            }
+//        }
+//
+//        return dummy.next;
+//    }
 
 //    public static ListNode deleteDuplicates(ListNode head) {
 //        if (head == null || head.next == null) {
@@ -87,5 +114,8 @@ class ListNode {
 
     public ListNode(int val) {
         this.val = val;
+    }
+
+    public ListNode() {
     }
 }
