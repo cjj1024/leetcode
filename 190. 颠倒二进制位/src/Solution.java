@@ -8,6 +8,7 @@ public class Solution {
 //        System.out.println(reverseBits(43261596)); //00000010100101000001111010011100 964176192
         System.out.println(reverseBits(-3)); //11111111111111111111111111111101 -1073741825
         System.out.println(Integer.toBinaryString(-3));
+        System.out.println(Integer.parseUnsignedInt(("11111111111111111111111111111101"), 2));
     }
 
     public static int reverseBits(int n) {

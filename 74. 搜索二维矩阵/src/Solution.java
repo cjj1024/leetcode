@@ -9,12 +9,52 @@ public class Solution {
                 {10, 11, 16, 20},
                 {23, 30, 34, 50}
         };
-        int target = 13;
 
-        System.err.println(searchMatrix(matrix, target));
+        System.err.println(searchMatrix(matrix, 3));
+        System.out.println(searchMatrix(matrix, 20));
+        System.out.println(searchMatrix(matrix, 23));
+        System.out.println(searchMatrix(matrix, -1));
+        System.out.println(searchMatrix(new int[][]{{1}}, 1));
     }
 
     public static boolean searchMatrix(int[][] matrix, int target) {
+        int left = 0;
+        int right = matrix.length - 1;
+        int mid = (left + right) / 2;
+        while (left < right) {
+            mid = (left + right) / 2;
+            if (matrix[mid][0] > target) {
+                right = mid - 1;
+            } else if (matrix[mid][0] < target) {
+                if (matrix[mid][matrix[0].length - 1] >= target) {
+                    break;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                break;
+            }
+        }
+
+        int x = (left + right) / 2;
+
+        left = 0;
+        right = matrix[0].length - 1;
+        while (left <= right) {
+            mid = (left + right) / 2;
+            if (matrix[x][mid] > target) {
+                right = mid - 1;
+            } else if (matrix[x][mid] < target) {
+                left = mid + 1;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean searchMatrix2(int[][] matrix, int target) {
         if (matrix == null || matrix.length < 1 || matrix[0].length < 1) {
             return false;
         }
