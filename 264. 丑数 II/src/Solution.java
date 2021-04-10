@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author CuiJunJie
@@ -7,13 +6,41 @@ import java.util.Set;
  */
 public class Solution {
     public static void main(String[] args) {
-        System.out.println(nthUglyNumber(10));
+        System.out.println(nthUglyNumber(1407));
     }
 
-    private static Ugly ugly = new Ugly(1690);
     public static int nthUglyNumber(int n) {
-        return ugly.get(n - 1);
+        List<Integer> list = new ArrayList<>();
     }
+
+//    private static Ugly ugly = new Ugly(1690);
+//    public static int nthUglyNumber(int n) {
+//        return ugly.get(n - 1);
+//    }
+
+
+//    public static int nthUglyNumber(int n) {
+//        if (n == 1) {
+//            return 1;
+//        }
+//
+//        Set<Integer> set = new HashSet<>();
+//        set.add(1);
+//        int num = 0;
+//        int i = 1;
+//        while (true) {
+//            if (set.contains(i)) {
+//                num++;
+//                set.add(i * 2);
+//                set.add(i * 3);
+//                set.add(i * 5);
+//            }
+//            if (num == n) {
+//                return i;
+//            }
+//            i++;
+//        }
+//    }
 
 //    public static int nthUglyNumber(int n) {
 //        if (n < 7) {
