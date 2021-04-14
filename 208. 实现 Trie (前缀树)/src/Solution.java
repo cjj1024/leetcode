@@ -4,7 +4,7 @@
  */
 public class Solution {
     public static void main(String[] args) {
-        Trie trie = new Trie();
+        Trie2 trie = new Trie2();
 
 //        trie.insert("apple");
 //        trie.search("apple");   // 返回 true
@@ -19,6 +19,11 @@ public class Solution {
         System.out.println(trie.startsWith("app"));
         trie.insert("app");
         System.out.println(trie.search("app"));
+
+//        trie.insert("abp");
+//        trie.insert("acpde");
+//        System.out.println(trie.search("abp"));
+//        System.out.println(trie.search("acp"));
     }
 
 
