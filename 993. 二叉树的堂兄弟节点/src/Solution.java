@@ -8,9 +8,10 @@ import java.util.*;
  */
 public class Solution {
     public static void main(String[] args) {
-        System.out.println(isCousins(TreeNode.createTree(new Integer[]{1, 2, 3, 4, null, null, null}, 0), 4, 3));
-        System.out.println(isCousins(TreeNode.createTree(new Integer[]{1, 2, 3, null, 4, null, 5}, 0), 5, 4));
-        System.out.println(isCousins(TreeNode.createTree(new Integer[]{1, 2, 3, null, null, null, 4}, 0), 3, 2));
+
+//        System.out.println(isCousins(TreeNode.createTree(new Integer[]{1, 2, 3, 4, null, null, null}, 0), 4, 3));
+//        System.out.println(isCousins(TreeNode.createTree(new Integer[]{1, 2, 3, null, 4, null, 5}, 0), 5, 4));
+//        System.out.println(isCousins(TreeNode.createTree(new Integer[]{1, 2, 3, null, null, null, 4}, 0), 3, 2));
     }
 
     public static boolean isCousins(TreeNode root, int x, int y) {
