@@ -14,26 +14,55 @@ public class Solution {
     }
 
     public static int numSquares(int n) {
-        int[] dp = new int[n + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0;
-        int maxSquareNum = (int) Math.sqrt(n) + 1;
-        int[] squareNums =  new int[maxSquareNum];
-        for (int i = 0; i < maxSquareNum; i++) {
-            squareNums[i] = i * i;
+        int sn = (int) Math.sqrt(n);
+        int[] w = new int[sn];
+        for (int i = 0; i < sn; i++) {
+            w[i] = (i + 1) * (i + 1);
         }
 
-        for (int i = 1; i <= n; i++) {
-            for (int s = 1; s < maxSquareNum; s++) {
-                if (i < squareNums[s]) {
-                    break;
+        int[][] dp = new int[sn + 1][n + 1];
+        dp[0][0] = 1;
+        for (int i = 1; i <= sn; i++) {
+            Arrays.fill(dp[i], Integer.MAX_VALUE);
+            int x = w[i - 1];
+            for (int j = 1; j <= n; j++) {
+                if (j % x == 0) {
+                    dp[i][j] = j / x;
+                } else {
+                    for (int k = 0; ; k++) {
+                        if (j - k * x < 0) {
+                            break;
+                        }
+                        dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - k * x] + k);
+                    }
                 }
-                dp[i] = Math.min(dp[i], dp[i - squareNums[s]] + 1);
             }
         }
 
-        return dp[n];
+        return dp[sn][n];
     }
+
+//    public static int numSquares(int n) {
+//        int[] dp = new int[n + 1];
+//        Arrays.fill(dp, Integer.MAX_VALUE);
+//        dp[0] = 0;
+//        int maxSquareNum = (int) Math.sqrt(n) + 1;
+//        int[] squareNums =  new int[maxSquareNum];
+//        for (int i = 0; i < maxSquareNum; i++) {
+//            squareNums[i] = i * i;
+//        }
+//
+//        for (int i = 1; i <= n; i++) {
+//            for (int s = 1; s < maxSquareNum; s++) {
+//                if (i < squareNums[s]) {
+//                    break;
+//                }
+//                dp[i] = Math.min(dp[i], dp[i - squareNums[s]] + 1);
+//            }
+//        }
+//
+//        return dp[n];
+//    }
 
 //    public static int numSquares(int n) {
 //        List<Integer> list = new ArrayList<>();
