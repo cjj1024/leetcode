@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,47 +43,48 @@ public class Solution {
         System.out.println(maxPoints(points));
     }
 
-    public static int maxPoints(int[][] points) {
-        if (points == null || points.length < 1) {
-            return 0;
-        }
-        if (points.length == 1) {
-            return 1;
-        }
 
-        int maxNum = 0;
-        Map<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < points.length; i++) {
-            int samePoint = 0;
-            int num = 0;
-            map.clear();
-            for (int j = i + 1; j < points.length; j++) {
-                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
-                    samePoint++;
-                    continue;
-                }
-
-                int a = points[i][0] - points[j][0];
-                int b = points[i][1] - points[j][1];
-                int c = gcd(a, b);
-                String key;
-                if (a == 0 || b == 0) {
-                    if (a == 0) {
-                        key = "0/";
-                    } else {
-                        key = "/0";
-                    }
-                } else {
-                    key = a / c + "/" + b / c;
-                }
-                map.put(key, map.getOrDefault(key, 0) + 1);
-                num = Math.max(num, map.get(key));
-            }
-            maxNum = Math.max(maxNum, num + samePoint + 1);
-        }
-
-        return maxNum;
-    }
+//    public static int maxPoints(int[][] points) {
+//        if (points == null || points.length < 1) {
+//            return 0;
+//        }
+//        if (points.length == 1) {
+//            return 1;
+//        }
+//
+//        int maxNum = 0;
+//        Map<String, Integer> map = new HashMap<>();
+//        for (int i = 0; i < points.length; i++) {
+//            int samePoint = 0;
+//            int num = 0;
+//            map.clear();
+//            for (int j = i + 1; j < points.length; j++) {
+//                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
+//                    samePoint++;
+//                    continue;
+//                }
+//
+//                int a = points[i][0] - points[j][0];
+//                int b = points[i][1] - points[j][1];
+//                int c = gcd(a, b);
+//                String key;
+//                if (a == 0 || b == 0) {
+//                    if (a == 0) {
+//                        key = "0/";
+//                    } else {
+//                        key = "/0";
+//                    }
+//                } else {
+//                    key = a / c + "/" + b / c;
+//                }
+//                map.put(key, map.getOrDefault(key, 0) + 1);
+//                num = Math.max(num, map.get(key));
+//            }
+//            maxNum = Math.max(maxNum, num + samePoint + 1);
+//        }
+//
+//        return maxNum;
+//    }
 
     private static int gcd2(int dy, int dx) {
         if (dx == 0) return dy;
