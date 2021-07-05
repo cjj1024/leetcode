@@ -8,7 +8,12 @@ import java.util.Map;
  */
 public class Solution {
     public static void main(String[] args) {
+        Character[] c = new Character[200];
+        for (int i = 0; i < 200; i++) {
+            c[i] = 'a';
+        }
 
+        System.out.println(c[190] == c[2]);
     }
     public static String frequencySort(String s) {
         Character[] sChars = new Character[s.length()];
